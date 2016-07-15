@@ -271,3 +271,61 @@ Process finished with exit code 0
 
 ```
 chúng ta có thể thấy việc sử dụng generator tiện lợi hơn nhiều so với việc phải định nghĩa các phương thức ```__iter__()``` và ```__next()__```
+##3 Future
+Chúng ta có thể thấy, các phiên bản của python có những sự khác nhau. Đồng thời, phiên bản mới của Python có thể có những tính năng, từ khóa mới mà phiên bản cũ chưa có. Vì vậy, kể từ phiên bản 2.1, python sử dụng từ khóa ```__future__`` cho phép người dùng ở các phiên bản cũ sử dụng các tính năng của các phiên bản mới.
+Ví dụ, ở phiên bản 2.7, với việc không sử dụng từ khóa future
+```python
+cong@cong-HP-ProBook-450-G1:~$ python2
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+[GCC 4.8.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print 8/7
+1
+>>> print 8//7
+1
+```
+Kết quả của 2 phép chia đều là 1.Bây giờ nếu sử dụng package division bằng ```__future__```:
+```python
+cong@cong-HP-ProBook-450-G1:~$ python2
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+[GCC 4.8.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from __future__ import division
+>>> print 8/7
+1.14285714286
+>>> print 8//7
+1
+>>> 
+```
+Ta sẽ có thể sử dụng phép chia 8/7 để chia theo kiểu thương là số thực. Còn phép chia 8//7 sẽ cho kết quả chia lấy phần nguyên. Đây là các tính năng mà python3 hỗ trợ, và có thể sử dụng ở python2 thông qua ```__future__```
+
+Một ví dụ khác, ở python2 print được sử dụng như sau
+```python
+cong@cong-HP-ProBook-450-G1:~$ python2
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+[GCC 4.8.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a="hello"
+>>> print a
+hello
+
+```
+Nếu dùng future import package print_statement thì ta sẽ phải sử dụng print theo kiểu của python3, tức là sử dụng như 1 hàm:
+```python
+cong@cong-HP-ProBook-450-G1:~$ python2
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+[GCC 4.8.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a="hello"
+>>> print a
+hello
+>>> from  __future__ import print_function
+>>> print a
+  File "<stdin>", line 1
+    print a
+          ^
+SyntaxError: invalid syntax
+>>> print(a)
+hello
+
+```
