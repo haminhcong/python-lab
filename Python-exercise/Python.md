@@ -172,4 +172,20 @@ print(b1.rep())
 ```
 - Để gọi tới phương thức của lớp cha bị override, ta sử dụng từ khóa super(), ví dụ  ``` super().show()``` hoặc ```super(A,self).show()```
 
-##1 Generator 
+##2 Iterator & Generator
+2 khái niệm này trong python dùng để tạo ra các đối tượng Iterable object, tức là các đối tượng có thể duyệt qua được. Đầu tiên chúng ta cần hiểu về Iterable object.
+##2.2.1 Iterable object
+Iterable object là khái niệm dùng để chỉ các đối tượng có chứa một tập hợp các phần tử cùng kiểu, và đối tượng này có thể dùng từ khóa for để duyệt qua. Ví dụ:
+```
+x = [1,2,3,4]
+for i in x:
+    print(i*2)
+y = ("a","b","c","d")
+for i in y:
+    print(i)
+z = {"a":"International", "b":1, "c": "look"}
+for key,value in z.items():
+    print (key+":"+str(value))
+```
+ 
+
