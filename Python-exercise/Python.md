@@ -25,7 +25,7 @@ Trong đó:
 - Built-in: Là phạm vi của các hàm, các phương thức, các thư viện được Python xây dựng sẵn.
 
 Ví dụ, với nội dung 1 file test.py như sau:
-```
+```python
 #tes.py content
 a_var = 'global value'
 b_var = 'another'
@@ -41,6 +41,7 @@ def outer():
 
 outer()
 ```
+
 Ta xét ánh xạ của tên riêng ```a_var``` trong câu lệnh ```print(a_var)```. Lúc này, đối với tên riêng ```avar``` thì:
 
 - phạm vi trong hàm inner() là Local scope
@@ -49,7 +50,7 @@ Ta xét ánh xạ của tên riêng ```a_var``` trong câu lệnh ```print(a_var
 
 - Các câu lệnh
 
-```
+```python
 a_var = 'global value'
 b_var = 'another'
 c_var = a_var+b_var
@@ -61,7 +62,7 @@ thuộc Global scope
 Khi xác định xem một tên riêng đang ánh xạ tới đối tượng nào trong chương trình, trình biên dịch của Python bắt đầu tìm kiếm ánh xạ tới tên riêng từ phạm vi Local. Nếu không tìm thấy, nó chuyển tiếp lên tìm kiếm ở phạm vi Enclosed, rồi Global, rồi Built-in. Nếu không tìm thấy, một exception xảy ra.
 
 Ta xét tiếp 1 ví dụ khác, xem trong trường hợp sau kết quả in ra là gì:
-```
+```python
 a = 'global'
 
 def outer():
@@ -94,7 +95,7 @@ Do đó sau khi thực hiện xong hàm inner(), giá trị của a trong hàm o
 ###1.2 Python Object
 ###1.2.1 Khai báo lớp trong Python
 - Python sử dụng câu lệnh ```Class <class name>:``` để khai báo một lớp. Ví dụ
-```
+```python
 class MyClass:
     """A simple example class"""
     i = 12345
@@ -105,10 +106,11 @@ class MyClass:
 Đoạn lệnh trên định nghĩa 1 class mới là MyClass.
 
 - Để tạo ra 1 thực thể có tên là x của lớp MyClass:
-```
+```python
 	x= MyClass()
 ```
 - Để viết phương thức khởi tạo cho class MyClass, chúng ta cần thêm vào định nghĩa của MyClass phương thức ```def __init__():```. Ví dụ
+```python
 class MyClass:
     """A simple example class"""
     i = 12345
@@ -124,7 +126,7 @@ class MyClass:
 - Phân biệt thuộc tính của lớp và thuộc tính của thực thể:
 
 Ở trong một lớp trong python có thể tồn tại 2 loại thuộc tính: thuộc tính của lớp và thuộc tính của thực thể. Thuộc tính của lớp là thuộc tính chung cho mọi đối tượng thuộc lớp đó và cho cả lớp đó, tương tự như thuộc tính có định danh ```static``` của các ngôn ngữ lập trình khác. Thuộc tính thực thể là các thuộc tính của riêng các thực thể trong lớp đó, các thuộc tính này được khai báo ngay trong phương thức khởi tạo. Ví dụ, trong khai báo của lớp MyClass như trên, thì a và b là 2 thuộc tính thực thể. Ta có thể lấy thêm 1 ví dụ về 2 loại thuộc tính này:
-```
+```python
 y1 = MyClass(3,4)
 y2 = MyClass(5,6)
 ```
@@ -136,7 +138,7 @@ Tương tự như thuộc tính, các phương thức được khai báo bên tr
 ###1.2.2 Kế thừa và đa hình trong Python
 - Python cho phép một lớp có thể kế thừa từ 1 lớp hay nhiều lớp khác. Ví dụ
 
-```
+```python
 class A():
     x1 = 10
     x2 = 8
@@ -176,7 +178,7 @@ print(b1.rep())
 2 khái niệm này trong python dùng để tạo ra các đối tượng Iterable object, tức là các đối tượng có thể duyệt qua được. Đầu tiên chúng ta cần hiểu về Iterable object.
 ##2.2.1 Iterable object
 Iterable object là khái niệm dùng để chỉ các đối tượng có chứa một tập hợp các phần tử cùng kiểu, và đối tượng này có thể dùng từ khóa for để duyệt qua. Ví dụ:
-```
+```python
 x = [1,2,3,4]
 for i in x:
     print(i*2)
