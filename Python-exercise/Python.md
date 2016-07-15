@@ -176,7 +176,7 @@ print(b1.rep())
 
 ##2 Iterator & Generator
 2 khái niệm này trong python dùng để tạo ra các đối tượng Iterable object, tức là các đối tượng có thể duyệt qua được. Đầu tiên chúng ta cần hiểu về Iterable object.
-##2.2.1 Iterable object
+##2.1 Iterable object
 Iterable object là khái niệm dùng để chỉ các đối tượng có chứa một tập hợp các phần tử cùng kiểu, và đối tượng này có thể dùng từ khóa for để duyệt qua. Ví dụ:
 ```python
 x = [1,2,3,4]
@@ -189,5 +189,85 @@ z = {"a":"International", "b":1, "c": "look"}
 for key,value in z.items():
     print (key+":"+str(value))
 ```
- 
+Có thể thấy, ở ví dụ trên ta có 3 iterable object là x, y, z, trong đó x là list object, y là tuple, z là dictionary. 3 đối tượng này đều có đặc điểm chung là chứa 1 tập hợp các phần tử cùng kiểu, và đều dùng cấu trúc for i in object để duyệt qua tập hợp phần tử trên.
 
+Vậy, làm thế nào để xác định 1 đối tượng là một iterable objet?
+##2.2 Iterator
+=> Một iterable object được định nghĩa là một đối tượng chứa phương thức ```__iter__()```, và kết quả trả về của phương thức này là ```iterator object```.
+
+=> Một ```iterator``` object là một đối tượng có chứa phương thức ```next()```. Phương thức ```next()``` trả về kết quả là một phần tử. Nếu không còn phần tử nào nữa, phương thức ```next()``` gây ra exception ```StopIteration```. Ví dụ
+```python
+x = [1,2,3,4]
+y = x.__iter__()
+print(y.__next__())
+print(y.__next__())
+print(y.__next__())
+print(y.__next__())
+print(y.__next__())
+
+1
+2
+3
+4
+Traceback (most recent call last):
+  File "/home/cong/PycharmProjects/python-lab/flask-begin-to-dream/run_batch.py", line 7, in <module>
+    print(y.__next__())
+StopIteration
+```
+Chúng ta có thể thấy là x chỉ có 4 phần tử, do đó khi gọi tới phương thức print thứ 5 thì ```StopIteration``` Exception được thả.
+
+Điều tiếp theo chúng ta quan tâm là làm thế nào để tạo ra các lớp có khả năng tạo ra các iterable object ?. Chúng ta có thể áp dụng định nghĩa, tạo ra các iterator object bằng cách thêm vào class các phương thức ```__iter__()``` và ```__next__()```. Ví dụ
+```python
+class A:
+    def __init__(self,min,max):
+        self.min=min
+        self.max=max
+        self.i=min
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if(self.i<=self.max):
+            self.i+=1
+            return (self.i-1)
+        else:
+            self.i=self.min
+            raise StopIteration
+
+x= A(4,8)
+for i in x:
+    print(i)
+
+#Ket qua
+4
+5
+6
+7
+8
+
+Process finished with exit code 0
+```
+##2.3 Generator
+Như vậy, với việc tạo ra các object có các phương thức ```__iter__()``` và ```__next__()```, chúng ta có thể tạo ra các đối tượng ```iterator```. Tuy nhiên, chúng ta có thể tạo ra các đối tượng iterator một cách đơn giản hơn bằng cách sử dụng ```generator```.
+
+```Generator``` là một function tạo ra iterator. function này tạo ra iterator bằng từ khóa yield. Khác với các function thông thường, function này không sử dụng return để trả về, mà mỗi một câu lệnh yield sẽ tạo ra một phần tử trong iterator được tạo ra.
+
+Ví dụ:
+```python
+def generatorA(min,max):
+    while min<=max:
+        yield min
+        min+=1
+
+for x in generatorA(4,8):
+    print(x)
+
+4
+5
+6
+7
+8
+
+Process finished with exit code 0
+
+```
+chúng ta có thể thấy việc sử dụng generator tiện lợi hơn nhiều so với việc phải định nghĩa các phương thức ```__iter__()``` và ```__next()__```
