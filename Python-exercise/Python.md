@@ -329,3 +329,192 @@ SyntaxError: invalid syntax
 hello
 
 ```
+##4 Decorator
+Chúng ta có một bài toán cần giải quyết như sau: Trong một số trường hợp, chúng ta muốn mở rộng chức năng của 1 số hàm bằng cách chạy một số đoạn code trước và sau khi các câu lệnh trong thân hàm đó được thực thi mà không làm thay đổi nội dung của hàm đó. Ví dụ ta có hàm sau:
+```python
+def func_a(x,y):
+	return (x+y)*2
+
+```
+bây giờ, ta muốn có 1 hàm func_b mới, có chức năng như chức nang của ```func_a``` và thêm một khả năng mới, ví dụ ta muốn trước khi thực hiện các câu lệnh của ```func_a```, kiểm tra các giá trị x,y .Nếu x+y<0 thì ta đặt x=0,y=0 trước khi thực thi các câu lệnh của hàm func_a. Khi đó hàm func_b sẽ có dạng như sau:
+```python
+def func_a(x,y):
+    return (x+y)*2
+def func_b(x,y):
+    if(x+y<0):
+        x=0
+        y=0
+    return func_a(x,y)
+```
+Như vậy với bài toán mở rộng chức năng của 1 hàm, ta có thể giải quyết dễ dàng bằng cách này. Nhưng nếu bây giờ ta có thêm 2 hàm nữa:
+```python
+def func_c(x,y):
+    return (x*y*2)
+def func_d(x,y):
+    return (x-y)*2
+```
+ta cũng muốn mở rộng 2 hàm này tương tự như hàm ```func_a ``` thì sao?
+
+Nếu giải quyết như cách cũ, thì chúng ta lại phải viết thêm 2 hàm mới thay thế cho 2 hàm trên. Như vậy cứ mỗi một lần cần thêm một chức năng ```x``` cho 1 hàm mới, lại phải viết lại một hàm khác bao lên hàm đó. Việc này rất tốn thời gian và không hiệu quả.
+
+Ở đây, chúng ta có một cách giải quyết hiệu quả hơn bài toán mở rộng 1 chức năng xác định cho nhiều hàm khác nhau, đó là sử dụng ```decorator```. Nhưng trước khi tìm hiểu về decorator, chưng ta cần hiểu được những tính chất sau của hàm trong python:
+###4.1 Hàm cũng là 1 object.
+Trong python, thì hàm cũng là 1 object, tức là nó cũng là 1 đối tượng, được ánh xạ vào 1 tên riêng, hay nói cách khác là chúng ta có thể tham chiếu nhiều tên riêng khác nhau vào cùng 1 hàm. Ví dụ:
+``` 
+def func_a(x,y):
+    return (x+y)*2
+x=func_a
+y=x(6,5)
+print(y)
+
+22
+
+Process finished with exit code 0
+```
+như vậy ta thấy hàm func_a thực chất là 1 ```đối tượng hàm``` được tham chiếu bởi tên riêng func_a. Sau khi chúng ta tham chiếu tên riêng x vào đối tượng hàm này, chúng ta có thể sử dụng hàm x(6,5).
+###4.2 Hàm có thể nhận tham số là 1 hàm có thể trả về 1 hàm khác.
+Chúng ta đã thấy, python truyền giá trị vào hàm bằng tham chiếu(tức là bằng tên riêng tham chiếu tới các đối tượng). Ở phần trước, chúng ta vừa thấy được 1 hàm thực chất là một đối tượng được tham chiếu bởi 1 tên riêng, do đó chúng ta có thể truyền tên riêng ánh xạ tới hàm đó vào 1 hàm, tức là 1 hàm có thể nhận tham số là 1 hàm khác, và trả về 1 hàm khác. Ví dụ
+```python
+def func_c(x,y):
+    return (x*y*2)
+def func_d(x,y):
+    return (x-y)*2
+def func_a(x,y):
+    return (x+y)*2
+
+def func_e(func_x):
+    z=9+func_x(3,4)
+    return z
+print (func_e(func_d))
+print (func_e(func_c))
+print (func_e(func_a))
+
+7
+33
+23
+
+Process finished with exit code 0
+
+```
+###4.3 Tính bao đóng của một hàm (function closure)
+Python hỗ trợ một tính năng, đó là các hàm được khai báo ở các scope không phải là global (ví dụ ở trong 1 hàm, 1 object nào đó) sẽ có thể ghi nhớ các đối tượng được sử dụng trong hàm đó khi hàm đó được định nghĩa. Để hiểu rõ hơn về khái niệm này, chúng ta xét ví dụ sau:
+```python
+def func_g():
+    x=9
+    y=4
+    def func_t():
+        return (x+y)
+    return func_t
+
+z=func_g()
+print(z())
+
+13
+
+Process finished with exit code 0
+
+
+```
+Trong ví dụ trên, ta thấy ```func_t``` được khai báo khi func_g() được thực thi. Do đó khi func_g() thực thi xong, ta có thể thấy func_g trả về object hàm là func_t. Khi ta gán z vào object trả về của func_g(), thì z tham chiếu tới đối tượng hàm func_t. Do đó khi z được thực thi, các câu lệnh trong func_t được thực hiện.
+
+Ta thấy tại thời điểm các câu lệnh trong func_t được thực hiện, nó truy cập tới các đối tượng được tham chiếu bởi 2 tên riêng x và y. Tuy nhiên, x và y là 2 tên riêng nằm trong scope của func_g(), mà lúc này (lúc func_t được thực hiện) thì func_g đã được thực hiện xong, nên các tên riêng x và y trong scope của func_g bị hủy. Nếu theo luật LEGB thì khi thực thi các câu lệnh trong func_t sẽ xảy ra exception do không thể xác định được các tên riêng x và y trong các câu lệnh này đang tham chiếu tới đối tượng nào, do x và y ở func_g đã bị hủy. Nhưng chúng ta thấy rằng, câu lệnh vẫn được thực thi và không có lỗi xảy ra. lý do là theo tính năng function clossure, các tên riêng x và y trong câu lệnh ```return(x+y)``` trong thâm hàm func_t sẽ vẫn ghi nhớ đối tượng mà các tên riêng này tham chiếu tới sau khi định nghĩa xong, do đó x vẫn tham chiếu tới 9, y tham chiếu tới 4 và không có exception xảy ra.
+
+Với các tính chất này, chúng ta có thể xây dựng giải pháp decorator cho bài toán đã đặt ra.
+###4.4 Định nghĩa decorator
+Decorator được định nghĩa là một hàm bao cho phép mở rộng chức năng của những hàm khác, các chức năng được mở rộng sẽ được khai báo bên trong hàm bao đó.
+
+Ta có thể sử dụng các tính chất về hàm ở trên để khai báo 1 decorator bằng cách thủ công. Ví dụ:
+```python
+def func_c(x,y):
+    return (x*y*2)
+
+def func_d(x,y):
+    return (x-y)*2
+
+def func_a(x,y):
+    return (x+y)*2
+
+def func_g(func_z):
+    def func_t(a1,a2):
+        if(a1+a2<0):
+            a1=0
+            a2=0
+        return func_z(a1,a2)
+    return func_t
+
+z1=func_g(func_a)
+print(z1(5,-6))
+z2=func_g(func_c)
+print(z2(5,6))
+z3=func_g(func_d)
+print(z3(5,-6))
+
+```
+Chúng ta có thể thấy, sau khi định nghĩa hàm decorator func_g, các hàm thức mới sau khi được mở rộng tính năng là z1, z2, z3. Cách thức mở rộng cũng dễ dàng và đơn giản hơn nhiều so với cách làm ban đầu.
+
+Để đơn giản hơn, chúng ta sẽ sử dụng cú pháp decorator mà python cung cấp. Sau khi cung cấp nhãn decorator(ký hiệu bắt đầu là @), thì hàm được đặt liền sau nhãn này được tự động mở rộng tính năng mà không cần làm thêm các bước như ở trên. Ví dụ:
+```python
+def decoratorX(func_t):
+    def func_z(x,y):
+        print("Decoratored!")
+        x+=1
+        y+=1
+        return func_t(x,y)
+    return func_z
+@decoratorX
+def func_c(x,y):
+    return (x*y*2)
+@decoratorX
+def func_d(x,y):
+    return (x-y)*2
+@decoratorX
+def func_a(x,y):
+    return (x+y)*2
+
+print(func_c(5,6))
+print(func_d(5,6))
+print(func_a(5,6))
+
+Decoratored!
+84
+Decoratored!
+-2
+Decoratored!
+26
+
+Process finished with exit code 0
+```
+
+Như vậy, decorator cung cấp cho chúng ta giải pháp để mở rộng một loạt các hàm một cách dễ dàng mà không cần phải thay đổi nội dung hàm đó
+##4.5 Class decorator
+Với các tính chất như trên, decorator không chỉ có khả năng mở rộng một hàm, mà nó còn có thể sử dụng để mở rộng một lớp. Ví dụ
+```python
+def func_f1(a_class):
+    a_class.newV="New attr"
+    def func_g(self):
+        self.a+=1
+        self.b+=1
+    a_class.f1_new =func_g
+    return a_class
+
+@func_f1
+class Az:
+    def __init__(self,x,y):
+        self.a=x
+        self.b=y
+    def func_a(self):
+        return( self.a*self.b*4)
+t = Az(3,4)
+print (t.func_a())
+t.f1_new()
+print(t.func_a())
+print (Az.newV)
+
+48
+80
+New attr
+
+Process finished with exit code 0
+
+```
+Lưu ý, lúc này decorator function không trả về 1 function nữa, mà sẽ trả về class truyền vào
