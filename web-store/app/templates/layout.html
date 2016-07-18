@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    {% if model['title'] %}
+        <title>{{ model['title'] }} - Web store</title>
+    {% else %}
+        <title>Web store</title>
+    {% endif %}
+
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/layout.css') }}" rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="top-banner navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-header" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/index" class="navbar-brand">
+                <img src="{{ url_for('static', filename='img/icon.png') }}">
+                HMC Store
+            </a>
+        </div>
+        <div class="computer-icon-collection nav navbar-nav">
+            <img src="{{ url_for('static', filename='img/pc.png') }}">
+            <img src="{{ url_for('static', filename='img/ssd.png') }}">
+            <img src="{{ url_for('static', filename='img/cpu.png') }}">
+            <img src="{{ url_for('static', filename='img/laptop.png') }}">
+            <img src="{{ url_for('static', filename='img/gpu.png') }}">
+        </div>
+        <!--right panel-->
+        <div class="collapse navbar-collapse" id="navbar-collapse-header">
+            <ul class="nav navbar-nav navbar-right custom-text-color custom-right-nav">
+                <li>
+                    <a href="/Home/About">
+                        <span><i class="glyphicon glyphicon-earphone"></i> Contact</span>
+                    </a>
+                </li>
+                {% if model['login_user'] %}
+                    <li><a href= {{"/Account/"+model['login_user'].name }} id="loginLink">Hello {{model['login_user'].name }}</a></li>
+                {% else %}
+                    <li><a href="/Account/Login" id="loginLink">Login</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- Header nav-->
+
+    <div class="navbar navbar-default" id="header-nav">
+        <div class="container custom-nav">
+            <!-- Product list dropdown when hover-->
+            <div class=" nav custom-nav" style="float:left;">
+                <ul class="nav navbar-nav product-list-menu">
+                    <li class="dropdown">
+                        <a href="/" class="dropdown-toggle" data-toggle="dropdown" id="product-list">Product list<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="/Processor">Processor</a></li>
+                            <li><a href="/VGA">Graphic Card</a></li>
+                            <li><a href="/SSD">SSD</a></li>
+                            <li><a href="/Laptop">Laptop</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!--search box and checkout cart-->
+            <div class=" nav navbar-nav" id="nav-search-cart">
+                <!--search box when using laptop screen-->
+                <form action="http://localhost:14316/product/search" class="navbar-form search-box" method="get" role="search" style="height:35px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter product name..." name="itemName" id="search-text-box">
+                        <div class="input-group-btn" style="width:auto;">
+                            <button class="btn btn-default" type="submit" style="color: #0094ff;">Search</button>
+                        </div>
+                    </div>
+                    <div id="search-result-box">
+
+                    </div>
+                </form>
+                <!--cart-->
+
+                <div class="checkout-box">
+                    <a href="http://localhost:14316/cart/checkout">
+                        <i class="glyphicon glyphicon-shopping-cart"></i><span> | </span>
+                        <span class="cart-total-money">0</span>
+                        <span> VNĐ</span>
+                    </a>
+                </div>
+            </div>
+
+            <!--Right section-->
+            <div class=" nav custom-nav" style="float:right;">
+                <ul class="nav navbar-nav product-list-menu">
+                    <li>
+                        <a href="http://localhost:14316/Home/Contact">
+                            <span><i class="glyphicon glyphicon-list-alt"></i> Build A Computer</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+
+    {% block body %}{% endblock %}
+    </div>
+        <hr>
+        <footer>
+            <p class=" custom-nav">© 2016 -Hà Minh Công store</p>
+            <p id="k01"></p>
+        </footer>
+    </div>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ url_for('static', filename='js/jquery-2.2.1.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/js.cookie.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+    <script>
+        /*checking script when page loaded*/
+        checkCartCookie();
+    </script>
+</body>
+</html>
