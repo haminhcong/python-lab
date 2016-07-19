@@ -12,7 +12,7 @@ def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         service = DbService()
-        login_account = customer.Account(form.account_name.data,form.password.data)
+        login_account = customer.Account(form.account_name.data, form.password.data)
         login_info = service.get_login_info(login_account)
         if login_info is None:
             flash('Invalid User name or password!')
@@ -20,7 +20,7 @@ def login():
             session['login_account'] = login_info.account.account_name
             session['login_name'] = login_info.customer_name
             session['logged_in'] = True
-            return ViewResult(view_name=None, model={},option='redirect',redirect_dest='index')
+            return ViewResult(view_name=None, model={}, option='redirect', redirect_dest='index')
 
     if session.get('register_account'):
         form.account_name.data = session.get('register_account')
@@ -42,8 +42,18 @@ def register():
                                         mobile_phone=form.phone_number.data, email=form.email.data)
         login_info = service.add_new_account(new_account)
         session['register_account'] = login_info.account_name
-        session['register_password']=login_info.password
+        session['register_password'] = login_info.password
         flash('Thanks for registering')
-        return  ViewResult('register.html', model={},option='redirect',redirect_dest='login')
+        return ViewResult('register.html', model={}, option='redirect', redirect_dest='login')
     model = {'form': form, 'title': 'Home page'}
     return ViewResult('register.html', model)
+
+
+@app.route('/account/logout', methods=['GET'])
+@set_login_user
+def logout():
+    if session.get('logged_in'):
+        session.pop('login_account', None)
+        session.pop('login_name', None)
+        session.pop('logged_in', None)
+    return ViewResult(view_name=None, model={}, option='redirect', redirect_dest='index')
