@@ -10,4 +10,4 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-from app.view import home_views, order_views, product_views
+from app.views import home_views, order_views, product_views, account_views

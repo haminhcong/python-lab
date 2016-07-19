@@ -5,10 +5,12 @@ class Account:
 
 
 class Customer:
-    def __init__(self, account, name, address, mobile_phone, roles):
-        self.account = account
-        self.name = name
+
+    def __init__(self, account_name,customer_name, password=None,  address=None, mobile_phone=None, email=None, roles = None):
+        self.account = Account(account_name, password)
+        self.customer_name = customer_name
         self.address = address
+        self.email = email
         self.mobile_phone = mobile_phone
         self.roles = roles
 

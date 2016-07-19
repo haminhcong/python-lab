@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block body %}
+    {% from "_formhelpers.html" import render_field %}
+    <h4>Create new account</h4>
+    <hr>
+    <form method=post action="/account/register" class="form-horizontal">
+      <dl>
+          {{ render_field(model['form'].account_name) }}
+          {{ render_field(model['form'].customer_name) }}
+          {{ render_field(model['form'].email) }}
+          {{ render_field(model['form'].address) }}
+          {{ render_field(model['form'].phone_number) }}
+          {{ render_field(model['form'].password) }}
+          {{ render_field(model['form'].confirm_password) }}
+      </dl>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register">
+        </div>
+    </div>
+    </form>
+{% endblock %}

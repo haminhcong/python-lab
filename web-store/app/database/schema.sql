@@ -3,6 +3,7 @@ CREATE TABLE customer(
   id INTEGER not null PRIMARY KEY autoincrement,
   customer_name VARCHAR(30) not NULL,
   account_name VARCHAR(30) not NULL,
+  email VARCHAR(30) NOT NULL ,
   password VARCHAR (30) not null,
   mobile_phone VARCHAR(30) NOT NULL ,
   address varchar(60) NOT NULL

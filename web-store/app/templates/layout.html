@@ -42,10 +42,12 @@
                         <span><i class="glyphicon glyphicon-earphone"></i> Contact</span>
                     </a>
                 </li>
-                {% if model['login_user'] %}
-                    <li><a href= {{"/Account/"+model['login_user'].name }} id="loginLink">Hello {{model['login_user'].name }}</a></li>
+                {% if model['logged_in'] %}
+                    <li><a href= {{"/Account/"+model['login_account'] }} id="loginLink">Hello {{model['login_name']}}</a></li>
+                    <li><a href="/account/logout" id="loginLink">Logout</a></li>
                 {% else %}
-                    <li><a href="/Account/Login" id="loginLink">Login</a></li>
+                    <li><a href="/account/login" id="loginLink">Login</a></li>
+                    <li><a href="/account/register" id="loginLink">Register</a></li>
                 {% endif %}
 
             </ul>
@@ -109,9 +111,8 @@
             </div>
         </div><!-- /.container-fluid -->
     </div>
-
-    {% block body %}{% endblock %}
-    </div>
+    <div class="container body-content">
+        {% block body %}{% endblock %}
         <hr>
         <footer>
             <p class=" custom-nav">© 2016 -Hà Minh Công store</p>
