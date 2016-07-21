@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+{% block body %}
+    {% from "_formhelpers.html" import render_HomeViewProduct %}
+    <div class="container">
+        <div>
+            <div class="col-md-6" id="image-show">
+                <img src={{ url_for('static', filename='product-img/'+model['laptop'].main_image) }}>
+            </div>
+            <div class="col-md-6 product-detail-info product-info">
+                <div class="text-info product-name">{{ model['laptop'].product_name }}</div>
+                <div id="price">
+                    <span class="money-value">{{ model['laptop'].price }} </span>
+                    <span style="font-weight:bold" class="text-danger"> VNĐ</span>
+                </div>
+                <div id="info">
+                    <strong>Product information</strong>
+                </div>
+                <div>
+                    Product name : <span class="product-id">
+                   {{ model['laptop'].product_name }}</span>
+                </div>
+                <div>
+                    Product code : <span class="product-id">
+                   {{ model['laptop'].product_code }}</span>
+                </div>
+                <div>Warranty:{{ model['laptop'].warranty }} moths</div>
+                <div>Manufacture: {{ model['laptop'].manufacture }}</div>
+                <div class="product-promotion">
+                    <strong>Gift:</strong>
+                            <div><p></p></div>
+                </div>
+                <p class="add-to-cart">
+                    <button type="button" class="btn btn-danger add-to-cart-text">Add to cart</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <h3>Specification</h3>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td>Procesor</td>
+                    <td>{{ model['laptop'].processor }}</td>
+                </tr>
+                <tr>
+                    <td>Memory</td>
+                    <td>{{ model['laptop'].memory }} </td>
+                </tr>
+                <tr>
+                    <td>Storage</td>
+                    <td>{{ model['laptop'].storage }}</td>
+                </tr>
+                <tr>
+                    <td>Graphic</td>
+                    <td>{{ model['laptop'].graphic_card }}</td>
+                </tr>
+                <tr>
+                    <td>Monitor</td>
+                    <td>
+                        {{ (model['laptop'].screen.size|string) + ' inches - ' + (model['laptop'].screen.resolution_width|string) + 'x' + (model['laptop'].screen.resolution_height|string) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+

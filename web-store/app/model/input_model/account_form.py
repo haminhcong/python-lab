@@ -1,11 +1,11 @@
 from flask_wtf import Form
-from wtforms import Form, BooleanField, StringField, PasswordField, validators
-from app.model.db_service.service import DbService
+from wtforms import BooleanField, StringField, PasswordField, validators
+from app.model.db_service.account_services import DbService
 
 
 class LoginForm(Form):
     account_name = StringField('Account name', [validators.DataRequired()])
-    password = PasswordField('New Password', [validators.DataRequired()])
+    password = PasswordField('Password', [validators.DataRequired()])
 
     def validate(self):
         check_validate = True

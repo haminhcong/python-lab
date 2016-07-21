@@ -1,24 +1,10 @@
 {% extends 'layout.html' %}
 {% block body %}
+    {% from "_formhelpers.html" import render_HomeViewProduct %}
     <h3 class="h3-tab">Hot sale product</h3>
     <div class=" container">
       {% for entry in model['product_list'] %}
-        <div id="image-gallery" class="col-md-4 thumbnail product-info">
-            <a href={{'/product/'+entry.price|string}}>
-                <img src={{ url_for('static', filename='product-img/a1.jpg') }} alt={{ url_for('static', filename='img/a1.png') }} class="product-image">
-                <p class=" text-info product-name" style="font-weight:bold">
-                    Intel® Core™ i5-6402P Processor  <span></span>
-                    (<span class="product-id">{{ entry.price }}</span>)
-                </p>
-
-            </a>
-            <p class="text-danger" style="font-weight:200"><span class="money-value">4.199.000</span><span> VNĐ</span></p>
-            <p class="add-to-cart-product-list add-to-cart" isselected="false">
-                <span style="font-size:14px;">
-                    <i class="glyphicon glyphicon-shopping-cart"></i><span class="add-to-cart-text">Thêm vào giỏ hàng</span>
-                </span>
-            </p>
-        </div>
+          {{ render_HomeViewProduct(entry) }}
       {% endfor %}
     </div>
 {% endblock %}

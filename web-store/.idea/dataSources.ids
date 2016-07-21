@@ -26,6 +26,7 @@
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="customer_name" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="account_name" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR (30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="mobile_phone" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="address" sqlType="VARCHAR(60)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
@@ -62,7 +63,7 @@
     </table>
     <table name="laptop_screen" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
-      <column name="screen_size" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="screen_size" sqlType="FLOAT" precision="0" scale="-1" nullable="false" jdbcType="6"/>
       <column name="resolution_width" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="resolution_height" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
@@ -78,6 +79,7 @@
       <column name="product_name" sqlType="VARCHAR(40)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="price" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="description" sqlType="VARCHAR(400)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="promotion" sqlType="VARCHAR(300)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="image" sqlType="VARCHAR(40)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="warranty" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="manufacture_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>

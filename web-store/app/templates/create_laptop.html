@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block body %}
+    {% from "_formhelpers.html" import render_field %}
+    {% from "_formhelpers.html" import render_product_form %}
+    <h4>Create new account</h4>
+    <hr>
+    <form method=post action="/product/laptop/create" enctype="multipart/form-data" class="form-horizontal">
+        {{ model['form'].hidden_tag() }}
+        <dl>
+          {{ render_product_form(model['form']) }}
+          {{ render_field(model['form'].processor) }}
+          {{ render_field(model['form'].storage) }}
+          {{ render_field(model['form'].graphic_card) }}
+          {{ render_field(model['form'].memory) }}
+          {{ render_field(model['form'].screen) }}
+        </dl>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Create">
+        </div>
+    </div>
+    </form>
+{% endblock %}

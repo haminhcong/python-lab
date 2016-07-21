@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block body %}
+    {% from "_formhelpers.html" import render_HomeViewProduct %}
+    <h3 class="h3-tab">Laptop</h3>
+    <div class=" container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <h4 style="background-color:blueviolet">{{ message }}</h4>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% for entry in model['product_list'] %}
+            {{ render_HomeViewProduct(entry) }}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -42,12 +42,12 @@
                         <span><i class="glyphicon glyphicon-earphone"></i> Contact</span>
                     </a>
                 </li>
-                {% if model['logged_in'] %}
-                    <li><a href= {{"/Account/"+model['login_account'] }} id="loginLink">Hello {{model['login_name']}}</a></li>
+                {% if model['user_info'] %}
+                    <li><a href= {{"/Account/"+model['user_info'].account_name }} id="loginLink">Hello {{model['user_info'].customer_name}}</a></li>
                     <li><a href="/account/logout" id="loginLink">Logout</a></li>
                 {% else %}
-                    <li><a href="/account/login" id="loginLink">Login</a></li>
                     <li><a href="/account/register" id="loginLink">Register</a></li>
+                    <li><a href="/account/login" id="loginLink">Login</a></li>
                 {% endif %}
 
             </ul>
@@ -64,11 +64,10 @@
                     <li class="dropdown">
                         <a href="/" class="dropdown-toggle" data-toggle="dropdown" id="product-list">Product list<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-
-                            <li><a href="/Processor">Processor</a></li>
-                            <li><a href="/VGA">Graphic Card</a></li>
-                            <li><a href="/SSD">SSD</a></li>
-                            <li><a href="/Laptop">Laptop</a></li>
+                            <li><a href="/laptop/index">Laptop</a></li>
+                            <li><a href="/Processor/index">Processor</a></li>
+                            <li><a href="/VGA/index">Graphic Card</a></li>
+                            <li><a href="/SSD/index">SSD</a></li>
                         </ul>
                     </li>
                 </ul>

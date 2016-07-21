@@ -13,10 +13,11 @@
     <h4>Login</h4>
     <hr>
     <form method=post action="/account/login" class="form-horizontal">
-      <dl>
+        {{ model['form'].hidden_tag() }}
+        <dl>
           {{ render_field(model['form'].account_name) }}
           {{ render_field(model['form'].password) }}
-      </dl>
+        </dl>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Login">

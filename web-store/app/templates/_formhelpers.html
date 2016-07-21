@@ -11,3 +11,32 @@
         </div>
     </div>
 {% endmacro %}
+
+{% macro render_product_form(product_form) %}
+    {{ render_field(product_form.product_code) }}
+    {{ render_field(product_form.name) }}
+    {{ render_field(product_form.manufacture) }}
+    {{ render_field(product_form.description) }}
+    {{ render_field(product_form.main_image) }}
+    {{ render_field(product_form.price) }}
+    {{ render_field(product_form.warranty) }}
+    {{ render_field(product_form.promotion) }}
+{% endmacro %}
+
+{% macro render_HomeViewProduct(entry) %}
+    <div id="image-gallery" class="col-md-4 thumbnail product-info">
+            <a href={{'/laptop/detail/'+entry.product_code|string}}>
+                <img src={{ url_for('static', filename='product-img/'+entry.main_image) }} alt={{ url_for('static', filename='product-img/'+entry.main_image) }} class="product-image">
+                <p class=" text-info product-name" style="font-weight:bold">
+                    {{ entry.product_name }}  <span></span>
+                    (<span class="product-id">{{ entry.product_code }}</span>)
+                </p>
+            </a>
+            <p class="text-danger" style="font-weight:200"><span class="money-value">{{ entry.price }}</span><span> VNĐ</span></p>
+            <p class="add-to-cart-product-list add-to-cart" isselected="false">
+                <span style="font-size:14px;">
+                    <i class="glyphicon glyphicon-shopping-cart"></i><span class="add-to-cart-text"> Add-to-cart</span>
+                </span>
+            </p>
+        </div>
+{% endmacro %}

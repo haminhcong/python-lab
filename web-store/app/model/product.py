@@ -1,9 +1,9 @@
 class Product:
-    def __init__(self, code_name, name, description, main_image, price, warranty, manufacture, images,
+    def __init__(self, product_code, product_name, description, main_image, price, warranty, manufacture, images,
                  comments, promotion):
-        self.code_name = code_name
-        self. name = name
-        self. description = description
+        self.product_code = product_code
+        self.product_name = product_name
+        self.description = description
         self.main_image = main_image
         self.price = price
         self.warranty = warranty
@@ -14,9 +14,10 @@ class Product:
 
 
 class Laptop(Product):
-    def __init__(self, code_name, name, description, main_image, price, warranty, manufacture, images, comments,
-                 promotion, processor, memory, storage, graphic_card, screen):
-        Product.__init__(self, code_name, name, description, main_image, price, warranty, manufacture, images,
+    def __init__(self, product_code: object, product_name: object, description: object, main_image: object, price: object, warranty: object, manufacture: object, images: object,
+                 comments: object,
+                 promotion: object, processor: object, memory: object, storage: object, graphic_card: object, screen: object) -> object:
+        Product.__init__(self, product_code, product_name, description, main_image, price, warranty, manufacture, images,
                          comments, promotion)
         self.processor = processor
         self.memory = memory

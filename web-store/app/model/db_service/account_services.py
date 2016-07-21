@@ -1,34 +1,17 @@
 from app.model.db_service import db_connection
-from app.model.view_model.product import HomeViewProduct
-from app.model.customer import Customer, Account
-import sqlite3
-from app import app
+from app.model.customer import Customer, UserLoggedInInfo
 
 
 class DbService:
     def __init__(self):
         self.db_connect = db_connection.get_db()
 
-    def get_hot_sale_products(self):
-        data = self.db_connect.execute('select product.product_code, product.product_name,'
-                                       ' product.price,product.image, product.promotion '
-                                       ' from best_seller_product, product '
-                                       'WHERE best_seller_product.id = product.product_id')
-        data_list = []
-        for z in data:
-            x = HomeViewProduct(z['product_code'], z['product_name'], z['image'], z['price'], z['promotion'])
-            data_list.append(x)
-        return data_list
-
-    def get_user(self, account):
-        data = self.db_connect.execute('select * from customer WHERE customer.account_name=account_name')
-        data_list = []
-        for z in data:
-            x = Customer(z['account_name'], z['password'], z['customer_name'], z['address'], z['mobile_phone'])
-            pass
-            # Viet them cau lenh querry role cho x.roles
-            data_list.append(x)
-        return data_list
+    def get_user_name_and_roles_info(self, account_name):
+        query = "SELECT id,customer_name FROM customer WHERE account_name ='{}'".format(account_name)
+        data = self.db_connect.execute(query).fetchone()
+        roles = self.get_user_roles(data['id'])
+        user_info = UserLoggedInInfo(account_name=account_name,customer_name=data['customer_name'],roles=roles)
+        return user_info
 
     def check_account_if_exists(self, check_account_name):
         query = "select * from customer WHERE customer.account_name='" + check_account_name + "'"
@@ -44,7 +27,7 @@ class DbService:
             new_account.customer_name,
             new_account.email, new_account.address, new_account.mobile_phone,
             new_account.account.password)
-        result = self.db_connect.execute(query)
+        self.db_connect.execute(query)
         self.db_connect.commit()
         account_id = self.db_connect.execute(
             'SELECT id FROM customer WHERE account_name ="{}"'.format(new_account.account.account_name)).fetchone()[
@@ -56,6 +39,10 @@ class DbService:
         self.db_connect.commit()
         return new_account.account
 
+    def get_account_id(self,account_name):
+        query = 'SELECT id FROM customer WHERE account_name ="{}"'.format(account_name)
+        return self.db_connect.execute(query).fetchone()['id']
+
     def get_user_roles(self, account_id):
         query_role_id = "select role_id  from account_role WHERE account_id='{}'".format(account_id)
         data_role_id = self.db_connect.execute(query_role_id)
@@ -63,10 +50,8 @@ class DbService:
         for z in data_role_id:
             x = z['role_id']
             query_role_name = "select name  from role WHERE id='{}'".format(x)
-            data_role_name = self.db_connect.execute(query_role_name)
-            for z2 in data_role_name:
-                x2 = z2['name']
-                data_list.append(x2)
+            role_name = self.db_connect.execute(query_role_name).fetchone()['name']
+            data_list.append(role_name)
         return data_list
 
     def get_login_info(self, check_account):

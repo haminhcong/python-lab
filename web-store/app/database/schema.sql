@@ -74,7 +74,7 @@ CREATE TABLE comment(
 DROP TABLE IF EXISTS laptop_screen;
 CREATE TABLE laptop_screen(
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,
-  screen_size  INTEGER NOT NULL,
+  screen_size  FLOAT NOT NULL,
   resolution_width INTEGER NOT NULL ,
   resolution_height INTEGER NOT NULL
 );
