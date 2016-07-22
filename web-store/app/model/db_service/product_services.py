@@ -1,9 +1,11 @@
 from app.model.db_service import db_connection
 from app.model import product
 import os
-from app.model.view_model.product import HomeViewProduct
-from app.model.product import Laptop,Screen
+from app.model.view_model.product import HomeViewProduct, SearchResultProduct
+from app.model.product import Laptop, Screen
 from app import app
+
+
 class DbService:
     def __init__(self):
         self.db_connect = db_connection.get_db()
@@ -31,7 +33,7 @@ class DbService:
         else:
             return True
 
-    def add_new_laptop(self, new_laptop:product.Laptop):
+    def add_new_laptop(self, new_laptop: product.Laptop):
         filename, file_extension = os.path.splitext(new_laptop.main_image.filename)
         image_save_location = os.path.join(app.root_path,
                                            'static/product-img/' + str(new_laptop.product_code) + file_extension)
@@ -44,12 +46,13 @@ class DbService:
                 str(new_laptop.product_code) + file_extension, new_laptop.warranty, new_laptop.manufacture
             ))
         self.db_connect.commit()
-        query ='SELECT product_id FROM product WHERE product_code ="{}"'.format(new_laptop.product_code)
+        query = 'SELECT product_id FROM product WHERE product_code ="{}"'.format(new_laptop.product_code)
         product_id = self.db_connect.execute(query).fetchone()['product_id']
-        self.db_connect.execute("INSERT INTO laptop(product_id, processor_name, memory, storage, graphic_card, screen_id)"
-                                " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')".format(
-            product_id,new_laptop.processor,new_laptop.memory,new_laptop.storage,new_laptop.graphic_card,
-            new_laptop.screen))
+        self.db_connect.execute(
+            "INSERT INTO laptop(product_id, processor_name, memory, storage, graphic_card, screen_id)"
+            " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')".format(
+                product_id, new_laptop.processor, new_laptop.memory, new_laptop.storage, new_laptop.graphic_card,
+                new_laptop.screen))
         self.db_connect.commit()
 
     def get_hot_sale_products(self):
@@ -74,14 +77,14 @@ class DbService:
             data_list.append(x)
         return data_list
 
-    def get_laptop_detail(self,product_code):
+    def get_laptop_detail(self, product_code):
         query = 'SELECT product_code,product_name,image,price,warranty,manufacture.name as manufacture_name,' \
                 ' memory,processor_name,storage,graphic_card,screen_size,resolution_width,resolution_height' \
                 ' FROM product,laptop,laptop_screen,manufacture WHERE product_code ="{}"' \
                 ' AND laptop_screen.id=laptop.screen_id AND laptop.product_id=product.product_id ' \
                 ' AND product.manufacture_id=manufacture.id'.format(product_code)
         laptop_info = self.db_connect.execute(query).fetchone()
-        if laptop_info ==None:
+        if laptop_info is None:
             return None
         else:
             laptop = Laptop(
@@ -106,4 +109,11 @@ class DbService:
             )
             return laptop
 
-
+    def search_product(self, key: str):
+        data = self.db_connect.execute(
+            "select product_code,product_name,price,image from product WHERE product_code LIKE '%{0}%'OR product_name LIKE '%{1}%'".format(key, key)).fetchall()
+        result_list = []
+        for x in data:
+            result_product = {'product_code':x['product_code'],'product_name':x['product_name'],'price': x['price'],'image': x['image']}
+            result_list.append(result_product)
+        return result_list

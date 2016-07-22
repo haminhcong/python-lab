@@ -115,32 +115,35 @@ function setCurrencyFormat() {
 }
 setCurrencyFormat();
 
-
 $("#search-text-box").keyup(function () {
+    console.log(this.value);
+    $.getJSON($SCRIPT_ROOT + '/search', {
+        search_key: this.value,
+      }, function(data) {
+        result=data;
+        $("#search-result-box").empty();
+        for (x = 0; x < result.length; x++) {
+            //console.log(result[x].product_code);
+            var $newResult = $("<div>", { class: "suggest_item" });
+            var img = $('<img style ="width:60px; height:60px;">');
+            //console.log('/static/product-img/' + result[x].image);
+            img.attr('src', '/static/product-img/' + result[x].image);
+            var info = $('<h2></h2>');
+            var link = $('<a></a>');
+            link.attr('href', '/laptop/detail/'+result[x].product_code);
+            link.text(result[x].product_name + "(" + result[x].product_code + ")");
+
+            var price = $("<span>", { class: "suggest_price" });
+            price.text(parseInt(result[x].price).toLocaleString("de-DE"));
+
+            $newResult.append(img);
+
+            info.append(link);
+            $newResult.append(info);
+            $newResult.append(price);
+            $("#search-result-box").append($newResult);
+        }
+      });
+    return false;
 
 });
-searchHub.client.setResult = function (result) {
-    $("#search-result-box").empty();
-    for (x = 0; x < result.length; x++) {
-        console.log(result[x].ProductName);
-        var $newResult = $("<div>", { class: "suggest_item" });
-        var img = $('<img style ="width:60px; height:60px;">');
-        img.attr('src', "/img/product/" + result[x].ImageFileName);
-
-        var info = $('<h2></h2>');
-        var link = $('<a></a>');
-        link.attr('href', "/product?name=" + (result[x].ProductName + result[x].ProductCode).toString().split(" ").join("-"));
-        link.text(result[x].ProductName + "(" + result[x].ProductCode + ")");
-
-        var price = $("<span>", { class: "suggest_price" });
-        price.text(parseInt(result[x].Price).toLocaleString("de-DE"));
-
-        $newResult.append(img);
-
-        info.append(link);
-        $newResult.append(info);
-        $newResult.append(price);
-        $("#search-result-box").append($newResult);
-    }
-
-}

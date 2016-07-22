@@ -11,6 +11,9 @@
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" media="screen">
     <link href="{{ url_for('static', filename='css/layout.css') }}" rel="stylesheet" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type=text/javascript>
+      $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
 </head>
 
 <body>
@@ -123,7 +126,7 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='js/js.cookie.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layout.v2.js') }}"></script>
     <script>
         /*checking script when page loaded*/
         checkCartCookie();
