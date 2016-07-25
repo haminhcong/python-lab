@@ -40,7 +40,7 @@ class TestCase(unittest.TestCase):
     def test_case_2(self):
         with self.assertRaises(ValueError) as context:
             a = BankAccount(-5000)
-        self.assertTrue('initial balance must be > 1000' in context.exception)
+        self.assertTrue("must be > 1000" in str(context.exception))
 
     def test_case_3(self):
         a = BankAccount(5000)
