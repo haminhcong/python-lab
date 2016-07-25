@@ -1,13 +1,12 @@
 import os
 
-from flask import Flask, g
+from flask import Flask
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'database/web_app.sqlite'),
+    DATABASE=os.path.join(app.root_path, 'database/app.sqlite'),
     SECRET_KEY='development key'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-
 from web_app.views import home_views, order_views, product_views, account_views

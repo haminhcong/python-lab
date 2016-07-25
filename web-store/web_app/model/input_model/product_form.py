@@ -47,5 +47,6 @@ class LaptopForm(ProductForm):
     graphic_card = StringField('Graphic card', [validators.DataRequired()])
     memory = StringField('Memory', [validators.DataRequired()])
     with app.app_context():
-        screen = SelectField(u'Manufacture', choices=product_services.DbService().get_screen_list(),coerce=int)
+        db_connect = product_services.DbService()
+        screen = SelectField(u'Manufacture', choices=db_connect.get_screen_list(),coerce=int)
 

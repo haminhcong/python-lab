@@ -1,5 +1,6 @@
 import sqlite3
-from web_app import app, g
+from flask import g
+from web_app import app
 
 
 def connect_db():
