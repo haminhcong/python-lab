@@ -1,5 +1,5 @@
 import sqlite3
-from app import app, g
+from web_app import app, g
 
 
 def connect_db():

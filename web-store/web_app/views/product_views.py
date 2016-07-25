@@ -1,10 +1,10 @@
 from flask import request, flash, jsonify
-from app.views.shared_works import ViewResult, set_login_user, check_role
-from app import app
-from app.model.product import Laptop
-from app.model.db_service import product_services
-from app.model.input_model.product_form import LaptopForm
-from app.model.view_model.product import JsonData
+from web_app.views.shared_works import ViewResult, set_login_user, check_role
+from web_app import app
+from web_app.model.product import Laptop
+from web_app.model.db_service import product_services
+from web_app.model.input_model.product_form import LaptopForm
+from web_app.model.view_model.product import JsonData
 import json
 
 

@@ -1,5 +1,5 @@
-from app.model.db_service import db_connection
-from app.model.customer import Customer, UserLoggedInInfo
+from web_app.model.db_service import db_connection
+from web_app.model.customer import Customer, UserLoggedInInfo
 
 
 class DbService:

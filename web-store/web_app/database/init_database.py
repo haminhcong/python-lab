@@ -1,6 +1,6 @@
 import sqlite3
-from app import app, g
-from app.model.db_service import db_connection
+from web_app import app, g
+from web_app.model.db_service import db_connection
 
 
 def init_db():

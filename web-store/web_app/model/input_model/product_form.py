@@ -1,9 +1,9 @@
 from flask_wtf import Form
 from wtforms import StringField, validators, TextAreaField, IntegerField, SelectField, FloatField
-from app import app
+from web_app import app
 from flask_wtf.file import FileField,FileAllowed,FileRequired
 
-from app.model.db_service import product_services
+from web_app.model.db_service import product_services
 
 
 class ProductForm(Form):

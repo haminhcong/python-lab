@@ -1,6 +1,6 @@
 from flask_wtf import Form
 from wtforms import BooleanField, StringField, PasswordField, validators
-from app.model.db_service.account_services import DbService
+from web_app.model.db_service.account_services import DbService
 
 
 class LoginForm(Form):

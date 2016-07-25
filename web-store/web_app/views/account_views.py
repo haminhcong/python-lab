@@ -1,9 +1,9 @@
 from flask import  session, flash,  request
-from app.views.shared_works import ViewResult, set_login_user
-from app import app
-from app.model.db_service import account_services
-from app.model import customer
-from app.model.input_model.account_form import RegistrationForm, LoginForm
+from web_app.views.shared_works import ViewResult, set_login_user
+from web_app import app
+from web_app.model.db_service import account_services
+from web_app.model import customer
+from web_app.model.input_model.account_form import RegistrationForm, LoginForm
 
 
 @app.route('/account/login', methods=['GET', 'POST'])

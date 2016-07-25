@@ -1,9 +1,9 @@
-from app.model.db_service import db_connection
-from app.model import product
+from web_app.model.db_service import db_connection
+from web_app.model import product
 import os
-from app.model.view_model.product import HomeViewProduct, SearchResultProduct
-from app.model.product import Laptop, Screen
-from app import app
+from web_app.model.view_model.product import HomeViewProduct, SearchResultProduct
+from web_app.model.product import Laptop, Screen
+from web_app import app
 
 
 class DbService:
