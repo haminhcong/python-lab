@@ -1,6 +1,7 @@
 from flask_wtf import Form
-from wtforms import BooleanField, StringField, PasswordField, validators
-from web_app.model.db_service.account_services import DbService
+from wtforms import StringField, PasswordField, validators
+
+from web_app.model import account_services
 
 
 class LoginForm(Form):
@@ -34,8 +35,7 @@ class RegistrationForm(Form):
         if not rv:
             check_validate = False
         if self.account_name.errors.__len__() == 0:
-            service = DbService()
-            check_exist = service.check_account_if_exists(self.account_name.data)
+            check_exist = account_services.get_user_name_and_roles_info(self.account_name.data)
             if check_exist:
                 self.account_name.errors.append('Account name exists!')
                 check_validate = False

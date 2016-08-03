@@ -1,9 +1,9 @@
 from flask_wtf import Form
-from wtforms import StringField, validators, TextAreaField, IntegerField, SelectField, FloatField
-from web_app import app
 from flask_wtf.file import FileField,FileAllowed,FileRequired
+from wtforms import StringField, validators, TextAreaField, IntegerField, SelectField
 
-from web_app.model.db_service import product_services
+from web_app import app
+from web_app.model import product_services
 
 
 class ProductForm(Form):
@@ -19,7 +19,7 @@ class ProductForm(Form):
     price = IntegerField('Price:', [validators.DataRequired()])
     warranty = IntegerField('Warranty', [validators.DataRequired()])
     with app.app_context():
-        manufacture = SelectField(u'Manufacture', choices=product_services.DbService().get_manufacture_list(),coerce=int)
+        manufacture = SelectField(u'Manufacture', choices=product_services.get_manufacture_list(), coerce=int)
     promotion = TextAreaField('Promotion', [validators.DataRequired()])
 
     def validate(self):
@@ -28,8 +28,7 @@ class ProductForm(Form):
         if not rv:
             check_validate = False
         if self.product_code.errors.__len__() == 0:
-            service = product_services.DbService()
-            check_exist = service.check_product_code_if_exists(self.product_code.data)
+            check_exist = product_services.check_product_code_if_exists(self.product_code.data)
             if check_exist:
                 self.product_code.errors.append('Product code exists!')
                 check_validate = False
@@ -47,6 +46,5 @@ class LaptopForm(ProductForm):
     graphic_card = StringField('Graphic card', [validators.DataRequired()])
     memory = StringField('Memory', [validators.DataRequired()])
     with app.app_context():
-        db_connect = product_services.DbService()
-        screen = SelectField(u'Manufacture', choices=db_connect.get_screen_list(),coerce=int)
+        screen = SelectField(u'Manufacture', choices=product_services.get_screen_list(),coerce=int)
 
