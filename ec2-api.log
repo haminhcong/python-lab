@@ -1,0 +1,87 @@
+2016-08-09 13:29:50.999 12353 INFO ec2api.wsgi [-] ec2api listening on 0.0.0.0:8788
+2016-08-09 13:29:50.999 12353 INFO oslo_service.service [-] Starting 16 workers
+2016-08-09 13:29:51.005 12363 INFO ec2api.wsgi.server [-] (12363) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.005 12362 INFO ec2api.wsgi.server [-] (12362) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.007 12364 INFO ec2api.wsgi.server [-] (12364) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.008 12365 INFO ec2api.wsgi.server [-] (12365) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.011 12366 INFO ec2api.wsgi.server [-] (12366) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.012 12367 INFO ec2api.wsgi.server [-] (12367) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.020 12369 INFO ec2api.wsgi.server [-] (12369) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.020 12368 INFO ec2api.wsgi.server [-] (12368) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.021 12370 INFO ec2api.wsgi.server [-] (12370) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.022 12371 INFO ec2api.wsgi.server [-] (12371) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.027 12372 INFO ec2api.wsgi.server [-] (12372) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.028 12374 INFO ec2api.wsgi.server [-] (12374) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.030 12373 INFO ec2api.wsgi.server [-] (12373) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.032 12376 INFO ec2api.wsgi.server [-] (12376) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.033 12375 INFO ec2api.wsgi.server [-] (12375) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:29:51.034 12377 INFO ec2api.wsgi.server [-] (12377) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:31:03.429 12375 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.429 12377 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.429 12376 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.430 12362 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.431 12374 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.432 12365 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.432 12364 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.432 12363 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.433 12373 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.434 12370 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.434 12372 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.434 12371 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.434 12367 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.433 12353 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.437 12368 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.438 12366 INFO oslo_service.service [-] Parent process has died unexpectedly, exiting
+2016-08-09 13:31:03.438 12369 INFO oslo_service.service [-] Parent process has died unexpectedly, exiting
+2016-08-09 13:31:03.439 12366 INFO ec2api.wsgi [-] Stopping WSGI server.
+2016-08-09 13:31:03.439 12369 INFO ec2api.wsgi [-] Stopping WSGI server.
+2016-08-09 13:31:03.440 12366 INFO ec2api.wsgi.server [-] (12366) wsgi exited, is_accepting=True
+2016-08-09 13:31:03.440 12369 INFO ec2api.wsgi.server [-] (12369) wsgi exited, is_accepting=True
+2016-08-09 13:31:03.440 12366 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:31:03.440 12369 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 13:33:52.050 13816 INFO ec2api.wsgi [-] ec2api listening on 0.0.0.0:8788
+2016-08-09 13:33:52.051 13816 INFO oslo_service.service [-] Starting 16 workers
+2016-08-09 13:33:52.056 13843 INFO ec2api.wsgi.server [-] (13843) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.057 13844 INFO ec2api.wsgi.server [-] (13844) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.058 13845 INFO ec2api.wsgi.server [-] (13845) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.059 13846 INFO ec2api.wsgi.server [-] (13846) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.060 13847 INFO ec2api.wsgi.server [-] (13847) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.062 13848 INFO ec2api.wsgi.server [-] (13848) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.063 13849 INFO ec2api.wsgi.server [-] (13849) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.064 13850 INFO ec2api.wsgi.server [-] (13850) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.065 13851 INFO ec2api.wsgi.server [-] (13851) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.067 13852 INFO ec2api.wsgi.server [-] (13852) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.068 13853 INFO ec2api.wsgi.server [-] (13853) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.071 13854 INFO ec2api.wsgi.server [-] (13854) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.077 13856 INFO ec2api.wsgi.server [-] (13856) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.079 13855 INFO ec2api.wsgi.server [-] (13855) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.079 13857 INFO ec2api.wsgi.server [-] (13857) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 13:33:52.079 13858 INFO ec2api.wsgi.server [-] (13858) wsgi starting up on http://0.0.0.0:8788
+2016-08-09 15:09:03.234 13858 INFO ec2api.api [-] 0.41741s 127.0.0.1 POST / None 404 [aws-cli/1.10.53 Python/2.7.6 Linux/3.16.0-76-generic botocore/1.4.43] application/x-www-form-urlencoded text/xml
+2016-08-09 15:09:03.234 13858 INFO ec2api.wsgi.server [-] 127.0.0.1 "POST / HTTP/1.1" status: 404 len: 298 time: 0.0427890
+2016-08-09 15:10:22.661 13858 INFO ec2api.api [-] 0.8467s 127.0.0.1 POST / None 404 [aws-cli/1.10.53 Python/2.7.6 Linux/3.16.0-76-generic botocore/1.4.43] application/x-www-form-urlencoded text/xml
+2016-08-09 15:10:22.661 13858 INFO ec2api.wsgi.server [-] 127.0.0.1 "POST / HTTP/1.1" status: 404 len: 298 time: 0.0092030
+2016-08-09 15:12:57.215 13843 INFO ec2api.api [-] 0.18937s 127.0.0.1 POST / None 404 [aws-cli/1.10.53 Python/2.7.6 Linux/3.16.0-76-generic botocore/1.4.43] application/x-www-form-urlencoded text/xml
+2016-08-09 15:12:57.216 13843 INFO ec2api.wsgi.server [-] 127.0.0.1 "POST / HTTP/1.1" status: 404 len: 298 time: 0.0202360
+2016-08-09 15:39:39.942 13846 INFO ec2api.api [-] 0.19744s 127.0.0.1 POST / None 404 [aws-cli/1.10.53 Python/2.7.6 Linux/3.16.0-76-generic botocore/1.4.43] application/x-www-form-urlencoded text/xml
+2016-08-09 15:39:39.943 13846 INFO ec2api.wsgi.server [-] 127.0.0.1 "POST / HTTP/1.1" status: 404 len: 298 time: 0.0208719
+2016-08-09 18:05:28.361 13858 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.361 13849 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.361 13857 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.361 13856 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.361 13855 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.362 13843 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.366 13844 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.367 13854 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.367 13845 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.367 13816 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.369 13853 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.370 13846 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.370 13852 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.370 13850 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.370 13847 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.371 13848 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
+2016-08-09 18:05:28.372 13851 INFO oslo_service.service [-] Parent process has died unexpectedly, exiting
+2016-08-09 18:05:28.372 13851 INFO ec2api.wsgi [-] Stopping WSGI server.
+2016-08-09 18:05:28.373 13851 INFO ec2api.wsgi.server [-] (13851) wsgi exited, is_accepting=True
+2016-08-09 18:05:28.373 13851 INFO oslo_service.service [-] Caught SIGINT signal, instantaneous exiting
