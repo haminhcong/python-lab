@@ -76,8 +76,8 @@ def outer():
 
     a = 'local'
 
-    def inner():
-	a='inner'
+    def inner():
+    	a = 'inner'
         a += ' variable'
     inner()
     print('a is', a)
