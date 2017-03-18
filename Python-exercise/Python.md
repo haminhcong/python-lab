@@ -1,6 +1,6 @@
-#Python fundamental
-##1 Object
-###1.1 Python Scopes
+# Python fundamental
+## 1 Object
+### 1.1 Python Scopes
 Trong Python, chúng ta có thể bắt gặp trường hợp, có nhiều đối tượng khác nhau được các tên riêng (name) trùng tên ánh xạ tới. Ví dụ
 ```python
 a=10
@@ -92,8 +92,8 @@ print('a is', a)
 Ta thấy, khi câu lệnh outer ở Global scope được thực thi, thì hàm outer() được thực thi. Trong hàm outer, a được gán object là 'local'. Khi câu lệnh inner() được gọi, tên riêng a lại được gán cho object 'inner'. Lúc này, ta cần hiểu rằng tuy 2 tên riêng này trùng tên nhưng lại ánh xạ tới 2 đối tượng khác nhau và là 2 tên riêng khác nhau. Bởi vì, khi câu lệnh a='inner' được thực thi sẽ tạo ra 1 tên riêng ```a``` mới ánh xạ tới object 'inner'. Do đó 2 tên riêng ```a``` ở inner và outer là 2 tên riêng hoàn toàn khác nhau.
 
 Do đó sau khi thực hiện xong hàm inner(), giá trị của a trong hàm outer không đổi, do đó câu lệnh ``` print('a is', a)``` sẽ là ```a is local```. Bởi vì, đối với câu lệnh này, local của nó là thân hàm outer(). Khi tìm kiếm trên thâm hàm outer, nó tìm thâý ánh xạ  a = 'local', nên nó không cần tìm ra bên ngoài nữa. Và tương tự với trường hợp trên, a ='global' và a='local' là 2 tên riêng hoàn toàn khác nhau. Do đó trong trường hợp này, ta sẽ có 3 tên riêng a khác nhau nhưng trùng tên ánh xạ tới 3 đối tượng.
-###1.2 Python Object
-###1.2.1 Khai báo lớp trong Python
+### 1.2 Python Object
+### 1.2.1 Khai báo lớp trong Python
 - Python sử dụng câu lệnh ```Class <class name>:``` để khai báo một lớp. Ví dụ
 ```python
 class MyClass:
@@ -174,9 +174,9 @@ print(b1.rep())
 ```
 - Để gọi tới phương thức của lớp cha bị override, ta sử dụng từ khóa super(), ví dụ  ``` super().show()``` hoặc ```super(A,self).show()```
 
-##2 Iterator & Generator
+## 2 Iterator & Generator
 2 khái niệm này trong python dùng để tạo ra các đối tượng Iterable object, tức là các đối tượng có thể duyệt qua được. Đầu tiên chúng ta cần hiểu về Iterable object.
-##2.1 Iterable object
+## 2.1 Iterable object
 Iterable object là khái niệm dùng để chỉ các đối tượng có chứa một tập hợp các phần tử cùng kiểu, và đối tượng này có thể dùng từ khóa for để duyệt qua. Ví dụ:
 ```python
 x = [1,2,3,4]
@@ -192,7 +192,7 @@ for key,value in z.items():
 Có thể thấy, ở ví dụ trên ta có 3 iterable object là x, y, z, trong đó x là list object, y là tuple, z là dictionary. 3 đối tượng này đều có đặc điểm chung là chứa 1 tập hợp các phần tử cùng kiểu, và đều dùng cấu trúc for i in object để duyệt qua tập hợp phần tử trên.
 
 Vậy, làm thế nào để xác định 1 đối tượng là một iterable objet?
-##2.2 Iterator
+## 2.2 Iterator
 => Một iterable object được định nghĩa là một đối tượng chứa phương thức ```__iter__()```, và kết quả trả về của phương thức này là ```iterator object```.
 
 => Một ```iterator``` object là một đối tượng có chứa phương thức ```next()```. Phương thức ```next()``` trả về kết quả là một phần tử. Nếu không còn phần tử nào nữa, phương thức ```next()``` gây ra exception ```StopIteration```. Ví dụ
@@ -246,7 +246,7 @@ for i in x:
 
 Process finished with exit code 0
 ```
-##2.3 Generator
+## 2.3 Generator
 Như vậy, với việc tạo ra các object có các phương thức ```__iter__()``` và ```__next__()```, chúng ta có thể tạo ra các đối tượng ```iterator```. Tuy nhiên, chúng ta có thể tạo ra các đối tượng iterator một cách đơn giản hơn bằng cách sử dụng ```generator```.
 
 ```Generator``` là một function tạo ra iterator. function này tạo ra iterator bằng từ khóa yield. Khác với các function thông thường, function này không sử dụng return để trả về, mà mỗi một câu lệnh yield sẽ tạo ra một phần tử trong iterator được tạo ra.
@@ -329,7 +329,7 @@ SyntaxError: invalid syntax
 hello
 
 ```
-##4 Decorator
+## 4 Decorator
 Chúng ta có một bài toán cần giải quyết như sau: Trong một số trường hợp, chúng ta muốn mở rộng chức năng của 1 số hàm bằng cách chạy một số đoạn code trước và sau khi các câu lệnh trong thân hàm đó được thực thi mà không làm thay đổi nội dung của hàm đó. Ví dụ ta có hàm sau:
 ```python
 def func_a(x,y):
@@ -486,7 +486,7 @@ Process finished with exit code 0
 ```
 
 Như vậy, decorator cung cấp cho chúng ta giải pháp để mở rộng một loạt các hàm một cách dễ dàng mà không cần phải thay đổi nội dung hàm đó
-##4.5 Class decorator
+## 4.5 Class decorator
 Với các tính chất như trên, decorator không chỉ có khả năng mở rộng một hàm, mà nó còn có thể sử dụng để mở rộng một lớp. Ví dụ
 ```python
 def func_f1(a_class):
